@@ -38,16 +38,16 @@
     </CFBundleURLTypes>
   </ItemGroup>
   <ItemGroup>
-    <CFBundleDocumentTypes Include="slproj">
-      <CFBundleTypeName>Serial Loops Project</CFBundleTypeName>
+    <CFBundleDocumentTypes Include="dummy">
+      <CFBundleTypeName>TestFile</CFBundleTypeName>
       <CFBundleTypeIconFile>IconTest.icns</CFBundleTypeIconFile>
-      <CFBundleTypeExtensions>slproj</CFBundleTypeExtensions>
+      <CFBundleTypeExtensions>test</CFBundleTypeExtensions>
       <CFBundleTypeRole>Editor</CFBundleTypeRole>
     </CFBundleDocumentTypes>
-    <CFBundleDocumentTypes Include="slzip">
-      <CFBundleTypeName>Serial Loops Exported Project</CFBundleTypeName>
+    <CFBundleDocumentTypes Include="dummy">
+      <CFBundleTypeName>TestFile2</CFBundleTypeName>
       <CFBundleTypeIconFile>IconTest.icns</CFBundleTypeIconFile>
-      <CFBundleTypeExtensions>slzip</CFBundleTypeExtensions>
+      <CFBundleTypeExtensions>tst;tst2</CFBundleTypeExtensions>
       <CFBundleTypeRole>Editor</CFBundleTypeRole>
     </CFBundleDocumentTypes>
   </ItemGroup>

@@ -4,12 +4,12 @@ Command-line interface tools for bundling .NET Core projects into MacOS applicat
 
 ### Installation
 
-Install MSBuild task via NuGet package: `Dotnet.Bundle`
+Install MSBuild task via NuGet package: `HaroohieClub.DotNet.Bundle`
 
-[![NuGet](https://img.shields.io/nuget/v/Dotnet.Bundle.svg)](https://www.nuget.org/packages/Dotnet.Bundle/)
+[![NuGet](https://img.shields.io/nuget/v/HaroohieClub.DotNet.Bundle.svg)](https://www.nuget.org/packages/HaroohieClub.DotNet.Bundle/)
 
 ```
-<PackageReference Include="Dotnet.Bundle" Version="*" />
+<PackageReference Include="HaroohieClub.DotNet.Bundle" Version="*" />
 ```
 
 ### Using the tool
@@ -50,6 +50,21 @@ Define properties to override default bundle values
         <CFBundleURLSchemes>test://</CFBundleURLSchemes>
     </CFBundleURLTypes>
 </ItemGroup>
+
+<ItemGroup>
+    <CFBundleDocumentTypes Include="dummy">
+      <CFBundleTypeName>TestFile</CFBundleTypeName>
+      <CFBundleTypeIconFile>IconTest.icns</CFBundleTypeIconFile>
+      <CFBundleTypeExtensions>test</CFBundleTypeExtensions>
+      <CFBundleTypeRole>Editor</CFBundleTypeRole>
+    </CFBundleDocumentTypes>
+    <CFBundleDocumentTypes Include="dummy">
+      <CFBundleTypeName>TestFile2</CFBundleTypeName>
+      <CFBundleTypeIconFile>IconTest.icns</CFBundleTypeIconFile>
+      <CFBundleTypeExtensions>tst;tst2</CFBundleTypeExtensions>
+      <CFBundleTypeRole>Editor</CFBundleTypeRole>
+    </CFBundleDocumentTypes>
+  </ItemGroup>
 ```
 
 More info: https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/BundleTypes/BundleTypes.html
