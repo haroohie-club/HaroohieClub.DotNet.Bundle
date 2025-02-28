@@ -1,6 +1,9 @@
-# dotnet-bundle
+# HaroohieClub.DotNet.Bundle
 
 Command-line interface tools for bundling .NET Core projects into MacOS applications (.app)
+
+We've forked it and will be more actively maintaining this version, including updating the package
+to include more plist properties.
 
 ### Installation
 
