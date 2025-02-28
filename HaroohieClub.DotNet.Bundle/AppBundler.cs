@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace Dotnet.Bundle
+namespace HaroohieClub.DotNet.Bundle
 {
     public class AppBundler
     {

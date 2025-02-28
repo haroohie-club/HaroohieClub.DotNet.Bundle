@@ -5,14 +5,14 @@ using System.Linq;
 using System.Xml;
 using Microsoft.Build.Framework;
 
-namespace Dotnet.Bundle
+namespace HaroohieClub.DotNet.Bundle
 {
     public class PlistWriter
     {
         private readonly BundleAppTask _task;
         private readonly StructureBuilder _builder;
 
-        private static readonly string[] ArrayTypeProperties = { "CFBundleURLSchemes" };
+        private static readonly string[] ArrayTypeProperties = { "CFBundleURLSchemes", "CFBundleTypeExtensions" };
         private const char Separator = ';';
 
         public PlistWriter(BundleAppTask task, StructureBuilder builder)
@@ -63,12 +63,16 @@ namespace Dotnet.Bundle
                     WriteProperty(xmlWriter, nameof(_task.NSRequiresAquaSystemAppearance), _task.NSRequiresAquaSystemAppearanceNullable.Value);
                 }
 
-                if (_task.CFBundleURLTypes.Length != 0)
+                if (_task.CFBundleURLTypes?.Length != 0)
                 {
                     WriteProperty(xmlWriter, nameof(_task.CFBundleURLTypes), _task.CFBundleURLTypes);
                 }
- 
 
+                if (_task.CFBundleDocumentTypes?.Length != 0)
+                {
+                    WriteProperty(xmlWriter, nameof(_task.CFBundleDocumentTypes), _task.CFBundleDocumentTypes);
+                }
+                
                 xmlWriter.WriteEndElement();
                 xmlWriter.WriteEndElement();
             }
@@ -132,11 +136,12 @@ namespace Dotnet.Bundle
 
         private void WriteProperty(XmlWriter xmlWriter, string name, ITaskItem[] values)
         {
+            _task.Log.LogMessage($"Writing property: {name}");
             xmlWriter.WriteStartElement("key");
             xmlWriter.WriteString(name);
             xmlWriter.WriteEndElement();
 
-            xmlWriter.WriteStartElement("array");            
+            xmlWriter.WriteStartElement("array");
 
             foreach (var value in values)
             {
@@ -147,6 +152,7 @@ namespace Dotnet.Bundle
                 {
                     var dictValue = entry.Value.ToString();
                     var dictKey = entry.Key.ToString();
+                    _task.Log.LogMessage($"Writing property: {dictKey}");
 
                     if (dictValue.Contains(Separator.ToString()) || ArrayTypeProperties.Contains(dictKey)) //array
                     {

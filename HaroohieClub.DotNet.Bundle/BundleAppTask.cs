@@ -1,7 +1,7 @@
 ﻿using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
-namespace Dotnet.Bundle
+namespace HaroohieClub.DotNet.Bundle
 {
     public class BundleAppTask : Task
     {
@@ -52,6 +52,9 @@ namespace Dotnet.Bundle
         internal bool? NSRequiresAquaSystemAppearanceNullable { get; private set; }
 
         public ITaskItem[] CFBundleURLTypes { get; set; }
+
+        [Required]
+        public ITaskItem[] CFBundleDocumentTypes { get; set; }
 
         public override bool Execute()
         {

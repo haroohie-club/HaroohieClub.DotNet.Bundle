@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet.Bundle", "DotNet.Bundle\DotNet.Bundle.csproj", "{CB54F0FD-7C7E-4347-BE12-5880C6C86ABF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HaroohieClub.DotNet.Bundle", "HaroohieClub.DotNet.Bundle\HaroohieClub.DotNet.Bundle.csproj", "{CB54F0FD-7C7E-4347-BE12-5880C6C86ABF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBundle", "TestBundle\TestBundle.csproj", "{967D02F2-36B8-4A22-A024-53F81FEA7C1A}"
 EndProject

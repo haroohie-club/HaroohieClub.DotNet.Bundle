@@ -3,28 +3,18 @@
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputPath>..\Build\$(Configuration)\</OutputPath>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <PlatformTarget>x64</PlatformTarget>
     <RuntimeIdentifiers>osx-x64</RuntimeIdentifiers>
     <RestoreSources>$(RestoreSources);..\\Dotnet.Bundle\\bin\\$(Configuration)\\</RestoreSources>
     <DotnetBundleTestVersion>9.9.999952</DotnetBundleTestVersion>
-    <CustomCommands>
-      <CustomCommands>
-        <Command>
-          <type>BeforeBuild</type>
-          <command>dotnet pack ..\\Dotnet.Bundle\\ -p:Configuration=$(Configuration) -p:PackageVersion=$(DotnetBundleTestVersion)</command>
-        </Command>
-        <Command>
-          <type>BeforeBuild</type>
-          <command>dotnet restore</command>
-        </Command>
-        <Command>
-          <type>AfterBuild</type>
-          <command>dotnet msbuild -t:BundleApp -p:RuntimeIdentifier=osx-x64 -p:Configuration=$(Configuration)</command>
-         </Command>
-      </CustomCommands>
-    </CustomCommands>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dotnet.Bundle" Version="$(DotnetBundleTestVersion)" />
+  </ItemGroup>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="dotnet pack ../DotNet.Bundle/ -p:Configuration=$(Configuration) -p:PackageVersion=$(DotnetBundleTestVersion); dotnet restore" />
+  </Target>
 
    <!-- Defines Info.plist -->
   <PropertyGroup>
@@ -48,6 +38,17 @@
     </CFBundleURLTypes>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Dotnet.Bundle" Version="$(DotnetBundleTestVersion)" />
+    <CFBundleDocumentTypes Include="slproj">
+      <CFBundleTypeName>Serial Loops Project</CFBundleTypeName>
+      <CFBundleTypeIconFile>IconTest.icns</CFBundleTypeIconFile>
+      <CFBundleTypeExtensions>slproj</CFBundleTypeExtensions>
+      <CFBundleTypeRole>Editor</CFBundleTypeRole>
+    </CFBundleDocumentTypes>
+    <CFBundleDocumentTypes Include="slzip">
+      <CFBundleTypeName>Serial Loops Exported Project</CFBundleTypeName>
+      <CFBundleTypeIconFile>IconTest.icns</CFBundleTypeIconFile>
+      <CFBundleTypeExtensions>slzip</CFBundleTypeExtensions>
+      <CFBundleTypeRole>Editor</CFBundleTypeRole>
+    </CFBundleDocumentTypes>
   </ItemGroup>
 </Project>
