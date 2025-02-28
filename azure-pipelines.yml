@@ -1,0 +1,32 @@
+trigger:
+- none
+pr:
+- none
+
+parameters:
+- name: version
+  displayName: Release Version
+  type: string
+  default: ''
+
+variables:
+- name: Version
+  value: ${{ parameters.version }}
+- group: NitroPackerSecrets
+
+jobs:
+- job:
+  displayName: Build and publish nupkgs
+  pool:
+    vmImage: ubuntu-latest
+  steps:
+  - task: NuGetAuthenticate@1
+    displayName: NuGet Authenticate
+
+  - script: |
+      dotnet build $(Build.SourcesDirectory)/HaroohieClub.DotNet.Bundle/HaroohieClub.DotNet.Bundle.csproj --configuration Release
+      dotnet pack $(Build.SourcesDirectory)/HaroohieClub.DotNet.Bundle/HaroohieClub.DotNet.Bundle.csproj --output $(Build.ArtifactStagingDirectory) --configuration Release
+    displayName: Build and pack nupkgs
+
+  - script: dotnet nuget push --api-key $(NuGetKey) -s nuget.org $(Build.ArtifactStagingDirectory)/HaroohieClub.DotNet.Bundle.$(Version).nupkg
+    displayName: NuGet push
