@@ -44,7 +44,7 @@ namespace HaroohieClub.DotNet.Bundle
                 xmlWriter.WriteStartElement("plist");
                 xmlWriter.WriteAttributeString("version", "1.0");
                 xmlWriter.WriteStartElement("dict");
-
+                
                 //This can be re-factored
                 WriteProperty(xmlWriter, nameof(_task.CFBundleName), _task.CFBundleName);
                 WriteProperty(xmlWriter, nameof(_task.CFBundleDisplayName), _task.CFBundleDisplayName);
@@ -63,12 +63,12 @@ namespace HaroohieClub.DotNet.Bundle
                     WriteProperty(xmlWriter, nameof(_task.NSRequiresAquaSystemAppearance), _task.NSRequiresAquaSystemAppearanceNullable.Value);
                 }
 
-                if (_task.CFBundleURLTypes?.Length != 0)
+                if (_task.CFBundleURLTypes?.Length > 0)
                 {
                     WriteProperty(xmlWriter, nameof(_task.CFBundleURLTypes), _task.CFBundleURLTypes);
                 }
 
-                if (_task.CFBundleDocumentTypes?.Length != 0)
+                if (_task.CFBundleDocumentTypes?.Length > 0)
                 {
                     WriteProperty(xmlWriter, nameof(_task.CFBundleDocumentTypes), _task.CFBundleDocumentTypes);
                 }
